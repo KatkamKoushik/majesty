@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const ambianceImages = [
-  { src: "/ambiance/outer view.jpeg", alt: "Outer View", className: "col-span-1 md:col-span-2 row-span-2" },
+  { src: "/ambiance/outer view wps.png", alt: "Outer View", className: "col-span-1 md:col-span-2 row-span-2" },
   { src: "/ambiance/inner view.jpg", alt: "Inner View 1", className: "col-span-1 row-span-1" },
   { src: "/ambiance/inner view 2.jpg", alt: "Inner View 2", className: "col-span-1 row-span-1" },
   { src: "/ambiance/inner view 3.jpg", alt: "Inner View 3", className: "col-span-1 row-span-1" },
@@ -12,6 +12,7 @@ const ambianceImages = [
   { src: "/ambiance/dinning place 1.jpg", alt: "Dining Place 1", className: "col-span-1 md:col-span-2 row-span-1" },
   { src: "/ambiance/dinning place 2.jpg", alt: "Dining Place 2", className: "col-span-1 row-span-1" },
   { src: "/ambiance/dinning place 3.jpg", alt: "Dining Place 3", className: "col-span-1 row-span-1" },
+  { src: "/ambiance/inner view 4.webp", alt: "Inner View 4", className: "col-span-1 md:col-span-4 row-span-2" },
 ];
 
 export default function Ambiance() {

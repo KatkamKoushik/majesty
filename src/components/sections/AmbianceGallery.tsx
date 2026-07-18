@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export function AmbianceGallery() {
   const galleryImages = [
-    "/ambiance/outer view.jpeg",
+    "/ambiance/outer view wps.png",
     "/ambiance/inner view.jpg",
     "/ambiance/inner view 2.jpg",
     "/ambiance/inner view 3.jpg",
@@ -13,6 +13,7 @@ export function AmbianceGallery() {
     "/ambiance/dinning place 1.jpg",
     "/ambiance/dinning place 2.jpg",
     "/ambiance/dinning place 3.jpg",
+    "/ambiance/inner view 4.webp",
   ];
 
   return (
@@ -30,7 +31,7 @@ export function AmbianceGallery() {
             <div 
               key={img} 
               className={`relative w-full overflow-hidden rounded-2xl bg-[#161618] border border-neutral-800 shadow-2xl group ${
-                idx === 0 || idx === 3 ? 'md:col-span-2 aspect-[16/9]' : 'aspect-square'
+                idx === 0 || idx === 3 || idx === 8 ? 'md:col-span-2 aspect-[16/9]' : 'aspect-square'
               }`}
             >
               <Image

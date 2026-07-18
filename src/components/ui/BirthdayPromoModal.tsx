@@ -22,7 +22,7 @@ export function BirthdayPromoModal() {
     }
     const msg = `🎉 BIRTHDAY PROMO CLAIM 🎉\n*Name:* ${name}\n*Phone:* ${phone}\n*Birthday:* ${date}\n\nPlease save my number and send me my 10% off code!`;
     const encoded = encodeURIComponent(msg);
-    const waUrl = `https://wa.me/918121213533?text=${encoded}`;
+    const waUrl = `https://wa.me/918008120038?text=${encoded}`;
     window.open(waUrl, '_blank');
     setShowPromo(false);
   };

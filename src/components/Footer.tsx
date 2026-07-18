@@ -10,8 +10,8 @@ export default function Footer() {
           </p>
           <div className="pt-4 space-y-2">
             <h4 className="text-white font-medium mb-2">Location</h4>
-            <p className="text-sm">Above ARAVIND STORE, 2nd Floor KSR Plaza,</p>
-            <p className="text-sm">Kishanpura, Naimnagar, Hanamkonda.</p>
+            <p className="text-sm">H.No.5 - 11 - 205, Jagruti Colony,</p>
+            <p className="text-sm">Naim Nagar, Hanamkonda, Telangana 506009</p>
           </div>
         </div>
 
@@ -20,14 +20,14 @@ export default function Footer() {
           <h4 className="text-white font-medium mb-4">Contact Us</h4>
           <p className="text-sm flex items-center gap-2">
             <span className="text-imperial">WhatsApp:</span> 
-            <a href="https://wa.me/918121213533" className="hover:text-amber transition-colors">
-              +91 81212 13533
+            <a href="https://wa.me/918008120038" className="hover:text-amber transition-colors">
+              +91 80081 20038
             </a>
           </p>
           <p className="text-sm flex items-center gap-2">
             <span className="text-imperial">Instagram:</span> 
-            <a href="https://instagram.com/Majestyhanamkonda" target="_blank" rel="noopener noreferrer" className="hover:text-amber transition-colors">
-              @Majestyhanamkonda
+            <a href="https://instagram.com/majesty_mandi_house" target="_blank" rel="noopener noreferrer" className="hover:text-amber transition-colors">
+              @majesty_mandi_house
             </a>
           </p>
         </div>
@@ -37,7 +37,7 @@ export default function Footer() {
           <h4 className="text-white font-medium mb-4">Find Us</h4>
           <div className="w-full h-48 rounded-xl overflow-hidden shadow-lg border border-white/10">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15197.809315589417!2d79.5447781!3d18.0163991!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a334f590fc53ba9%3A0x6b107e3240e5bbfa!2sNaimnagar%2C%20Hanamkonda%2C%20Telangana!5e0!3m2!1sen!2sin!4v1718000000000!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3794.199609522869!2d79.554788!3d18.0159377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a334f9bc5e96337%3A0x571a883b2fd8762b!2sMajesty%20Mandi%20House!5e0!3m2!1sen!2sin!4v1784374907186!5m2!1sen!2sin"
               width="100%"
               height="100%"
               style={{ border: 0 }}

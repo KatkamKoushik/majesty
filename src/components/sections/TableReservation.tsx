@@ -18,7 +18,7 @@ export function TableReservation() {
     }
     const msg = `📅 TABLE RESERVATION REQUEST 📅\n*Name:* ${name}\n*Phone:* ${phone}\n*Guests:* ${guests}\n*Date:* ${date}\n*Time:* ${time}\n*Occasion:* ${occasion}\n\nPlease confirm if this slot is available.`;
     const encoded = encodeURIComponent(msg);
-    const waUrl = `https://wa.me/918121213533?text=${encoded}`;
+    const waUrl = `https://wa.me/918008120038?text=${encoded}`;
     window.open(waUrl, '_blank');
   };
 
