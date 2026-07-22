@@ -42,7 +42,6 @@ export default async function AdminLayout({ children }: AdminLayoutProps) {
               afterSignOutUrl sends the owner back to the public homepage.
             */}
             <UserButton
-              afterSignOutUrl="/"
               appearance={{
                 variables: {
                   colorPrimary: "#DFB15B",
