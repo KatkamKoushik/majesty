@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^7.5.22",
+    "@vercel/blob": "^2.6.1",
+    "@vercel/postgres": "^0.10.0",
     "framer-motion": "^12.41.0",
     "lucide-react": "^1.21.0",
     "next": "16.2.9",

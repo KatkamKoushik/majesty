@@ -2,17 +2,17 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MenuCard } from '../ui/MenuCard';
-import { CartItem } from '@/types';
-import { menuItems } from '@/data/menu';
+import { CartItem, MenuItem } from '@/types';
 
 interface MenuGridProps {
   cart: CartItem[];
+  items: MenuItem[];
   onIncrease: (id: string, portion: string) => void;
   onDecrease: (id: string, portion: string) => void;
   onAdd: (item: Omit<CartItem, 'qty'>) => void;
 }
 
-export function MenuGrid({ cart, onIncrease, onDecrease, onAdd }: MenuGridProps) {
+export function MenuGrid({ cart, items, onIncrease, onDecrease, onAdd }: MenuGridProps) {
   const categories = ["All", "Chicken Starters", "Chicken Mandi", "Mutton Mandi", "Seafood Mandi", "Veg & Egg", "Specials"];
   const [activeCategory, setActiveCategory] = useState("All");
 
@@ -40,7 +40,7 @@ export function MenuGrid({ cart, onIncrease, onDecrease, onAdd }: MenuGridProps)
       {/* ── Menu Grid ── */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 xl:gap-10">
         <AnimatePresence mode="popLayout">
-          {menuItems
+          {items
             .filter(item => activeCategory === "All" || item.category === activeCategory)
             .map((item, idx) => {
               const cartItemsForItem = cart.filter(i => i.id === item.id);
