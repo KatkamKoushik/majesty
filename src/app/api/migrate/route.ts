@@ -12,6 +12,20 @@ export async function GET(request: Request) {
   }
 
   try {
+    // 1. Create the table if it does not exist
+    await sql`
+      CREATE TABLE IF NOT EXISTS menu_items (
+        id VARCHAR(255) PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        category VARCHAR(255) NOT NULL,
+        prices JSONB NOT NULL,
+        image VARCHAR(255) NOT NULL,
+        description TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `;
+
     const results = [];
     
     for (const item of menuItems) {

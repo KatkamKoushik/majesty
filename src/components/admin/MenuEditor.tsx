@@ -15,7 +15,7 @@ export default function MenuEditor({ initialItems }: { initialItems: MenuItem[] 
   // Form State
   const [name, setName] = useState("");
   const [category, setCategory] = useState("Chicken Starters");
-  const [prices, setPrices] = useState('{"Regular": 240}');
+  const [priceFields, setPriceFields] = useState<{portion: string, price: string}[]>([{ portion: "Regular", price: "240" }]);
   const [description, setDescription] = useState("");
   const [file, setFile] = useState<File | null>(null);
 
@@ -25,14 +25,14 @@ export default function MenuEditor({ initialItems }: { initialItems: MenuItem[] 
       setEditingItem(item);
       setName(item.name);
       setCategory(item.category);
-      setPrices(JSON.stringify(item.prices, null, 2));
+      setPriceFields(Object.entries(item.prices || {}).map(([portion, price]) => ({ portion, price: String(price) })));
       setDescription(item.description || "");
       setFile(null);
     } else {
       setEditingItem(null);
       setName("");
       setCategory("Chicken Starters");
-      setPrices('{"Regular": 240}');
+      setPriceFields([{ portion: "Regular", price: "240" }]);
       setDescription("");
       setFile(null);
     }
@@ -49,7 +49,17 @@ export default function MenuEditor({ initialItems }: { initialItems: MenuItem[] 
     const formData = new FormData();
     formData.append("name", name);
     formData.append("category", category);
-    formData.append("prices", prices);
+    
+    // Convert priceFields array to an object map
+    const pricesObj = priceFields.reduce((acc, curr) => {
+      if (curr.portion.trim()) {
+        acc[curr.portion.trim()] = Number(curr.price) || 0;
+      }
+      return acc;
+    }, {} as Record<string, number>);
+    const pricesStr = JSON.stringify(pricesObj);
+
+    formData.append("prices", pricesStr);
     if (description) formData.append("description", description);
 
     try {
@@ -64,7 +74,7 @@ export default function MenuEditor({ initialItems }: { initialItems: MenuItem[] 
         // Update local state optimistically
         setItems(items.map(i => i.id === editingItem.id ? {
           ...i,
-          name, category, prices: JSON.parse(prices), description,
+          name, category, prices: JSON.parse(pricesStr), description,
           image: file ? URL.createObjectURL(file) : i.image
         } : i));
 
@@ -78,7 +88,7 @@ export default function MenuEditor({ initialItems }: { initialItems: MenuItem[] 
         // Update local state optimistically
         setItems([{
           id: res.id as string,
-          name, category, prices: JSON.parse(prices), description,
+          name, category, prices: JSON.parse(pricesStr), description,
           image: URL.createObjectURL(file)
         }, ...items]);
       }
@@ -207,12 +217,49 @@ export default function MenuEditor({ initialItems }: { initialItems: MenuItem[] 
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-neutral-400 mb-1">Prices (JSON format)</label>
-                <textarea 
-                  required value={prices} onChange={e => setPrices(e.target.value)} rows={3}
-                  className="w-full bg-black border border-white/10 rounded-lg px-3 py-2 text-white font-mono text-sm focus:outline-none focus:border-[#DFB15B]"
-                  placeholder='{"Regular": 240}'
-                />
+                <label className="block text-xs font-medium text-neutral-400 mb-2">Prices (Portion & Price)</label>
+                <div className="space-y-2">
+                  {priceFields.map((field, index) => (
+                    <div key={index} className="flex gap-2 items-center">
+                      <input 
+                        type="text" required placeholder="e.g. Regular, 1pc, Half"
+                        value={field.portion}
+                        onChange={e => {
+                          const newFields = [...priceFields];
+                          newFields[index].portion = e.target.value;
+                          setPriceFields(newFields);
+                        }}
+                        className="w-1/2 bg-black border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-[#DFB15B]"
+                      />
+                      <input 
+                        type="number" required placeholder="₹ Price"
+                        value={field.price}
+                        onChange={e => {
+                          const newFields = [...priceFields];
+                          newFields[index].price = e.target.value;
+                          setPriceFields(newFields);
+                        }}
+                        className="w-1/2 bg-black border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-[#DFB15B]"
+                      />
+                      {priceFields.length > 1 && (
+                        <button 
+                          type="button" 
+                          onClick={() => setPriceFields(priceFields.filter((_, i) => i !== index))}
+                          className="p-2 text-neutral-400 hover:text-red-400 transition-colors"
+                        >
+                          <X size={16} />
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                  <button 
+                    type="button" 
+                    onClick={() => setPriceFields([...priceFields, { portion: "", price: "" }])}
+                    className="text-xs text-[#DFB15B] hover:text-[#c99a4c] font-medium mt-1 flex items-center gap-1"
+                  >
+                    <Plus size={12} /> Add Price Option
+                  </button>
+                </div>
               </div>
 
               <div>
