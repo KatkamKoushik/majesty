@@ -126,8 +126,8 @@ export default function MenuEditor({ initialItems }: { initialItems: MenuItem[] 
         </button>
       </div>
 
-      <div className="border border-white/10 rounded-xl overflow-hidden bg-[#111113]">
-        <table className="w-full text-left text-sm">
+      <div className="border border-white/10 rounded-xl overflow-x-auto overflow-y-hidden shadow bg-[#111113] w-full">
+        <table className="w-full min-w-max text-left text-sm">
           <thead className="bg-[#1a1a1d] text-neutral-400">
             <tr>
               <th className="px-4 py-3 font-medium">Image</th>

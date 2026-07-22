@@ -175,7 +175,7 @@ export function CanvasHero() {
           The inner div is sticky so the canvas stays pinned to the
           viewport while the parent scrolls behind it.
       ════════════════════════════════════════════════════════════════ */}
-      <div ref={scrollContainerRef} className="relative w-full h-[500vh] bg-[#0A0A0B]">
+      <div ref={scrollContainerRef} className="relative w-full h-[200vh] md:h-[500vh] bg-[#0A0A0B]">
         <div className="sticky top-0 w-full h-[100dvh] flex items-center justify-center pointer-events-none">
           <canvas
             ref={canvasRef}
