@@ -26,7 +26,7 @@ export function OptimizedImage({ src, alt, className, fallbackAlt, ...props }: O
   }
 
   const isDataUri = typeof src === 'string' && src.startsWith('data:');
-  const isRemote = typeof src === 'string' && src.startsWith('http');
+  const isRemote  = typeof src === 'string' && src.startsWith('http');
 
   if (isDataUri || isRemote) {
     // Destructure Next.js specific props to avoid passing them to native <img> elements
@@ -42,6 +42,9 @@ export function OptimizedImage({ src, alt, className, fallbackAlt, ...props }: O
     );
   }
 
+  // NOTE: Next.js <Image> does NOT allow query strings on local /public paths.
+  // Cache-busting for local images is handled by restarting the dev server,
+  // which clears the /_next/image cache automatically.
   return (
     <Image
       src={src}
@@ -53,3 +56,4 @@ export function OptimizedImage({ src, alt, className, fallbackAlt, ...props }: O
   );
 }
 export default OptimizedImage;
+
