@@ -25,6 +25,7 @@ export default function AdminLoginPage() {
           No custom password logic — Clerk handles everything.
         */}
         <SignIn
+          fallbackRedirectUrl="/admin"
           appearance={{
             variables: {
               colorPrimary: "#DFB15B",
