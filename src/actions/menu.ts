@@ -3,6 +3,7 @@
 import { sql } from "@vercel/postgres";
 import { put } from "@vercel/blob";
 import { revalidatePath } from "next/cache";
+import { MenuItem } from "@/types";
 
 export async function addMenuItem(formData: FormData) {
   const name = formData.get("name") as string;
@@ -125,7 +126,7 @@ export async function fetchMenuItems() {
       FROM menu_items 
       ORDER BY created_at DESC
     `;
-    return { success: true, items: rows };
+    return { success: true, items: rows as MenuItem[] };
   } catch (error: any) {
     console.error("Error fetching menu items:", error);
     return { error: error.message };

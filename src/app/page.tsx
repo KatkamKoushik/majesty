@@ -1,11 +1,12 @@
 import { fetchMenuItems } from "@/actions/menu";
 import { HomePageClient } from "@/components/HomePageClient";
 import { menuItems as fallbackMenu } from "@/data/menu";
+import { MenuItem } from "@/types";
 
 export const revalidate = 60; // Cache the page for 60 seconds
 
 export default async function Home() {
-  let items = [];
+  let items: MenuItem[] = [];
   try {
     const res = await fetchMenuItems();
     if (res.success && res.items) {

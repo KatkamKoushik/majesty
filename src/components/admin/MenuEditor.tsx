@@ -3,15 +3,7 @@
 import { useState } from "react";
 import { addMenuItem, editMenuItem, deleteMenuItem } from "@/actions/menu";
 import { Plus, Edit2, Trash2, X, Loader2, Image as ImageIcon } from "lucide-react";
-
-type MenuItem = {
-  id: string;
-  name: string;
-  category: string;
-  prices: any;
-  image: string;
-  description: string | null;
-};
+import { MenuItem } from "@/types";
 
 export default function MenuEditor({ initialItems }: { initialItems: MenuItem[] }) {
   const [items, setItems] = useState<MenuItem[]>(initialItems);
@@ -85,7 +77,7 @@ export default function MenuEditor({ initialItems }: { initialItems: MenuItem[] 
         
         // Update local state optimistically
         setItems([{
-          id: res.id,
+          id: res.id as string,
           name, category, prices: JSON.parse(prices), description,
           image: URL.createObjectURL(file)
         }, ...items]);
