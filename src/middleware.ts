@@ -14,20 +14,7 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-// Match only the /admin area but exclude the login page itself to avoid infinite redirect loops
-const isProtectedRoute = createRouteMatcher(["/admin(.*)"]);
-const isPublicRoute = createRouteMatcher(["/admin/login(.*)"]);
-
-export default clerkMiddleware(async (auth, req) => {
-  if (isProtectedRoute(req) && !isPublicRoute(req)) {
-    // If the user is not signed in, redirect them to /admin/login
-    const { userId } = await auth();
-    if (!userId) {
-      const loginUrl = new URL("/admin/login", req.url);
-      return NextResponse.redirect(loginUrl);
-    }
-  }
-});
+export default clerkMiddleware();
 
 export const config = {
   matcher: [
